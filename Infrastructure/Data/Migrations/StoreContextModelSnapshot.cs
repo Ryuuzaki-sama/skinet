@@ -35,7 +35,7 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductBrandId")
@@ -65,7 +65,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductBands");
+                    b.ToTable("ProductBrands");
                 });
 
             modelBuilder.Entity("Core.Entities.ProductType", b =>
