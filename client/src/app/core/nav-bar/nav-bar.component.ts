@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BasktetService } from 'src/app/basket/basktet.service';
+import { IBasket } from 'src/app/shared/Models/Basket';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  basket$: Observable<IBasket>;
+  constructor(private basketServoce: BasktetService) { }
 
   ngOnInit(): void {
+    this.basket$ = this.basketServoce.basket$;
   }
 
 }
