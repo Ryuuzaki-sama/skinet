@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from './account/account.service';
 import { BasktetService } from './basket/basktet.service';
 
 @Component({
@@ -9,13 +10,25 @@ import { BasktetService } from './basket/basktet.service';
 export class AppComponent implements OnInit {
   title = 'Skinet';
 
-  constructor(private basketService:BasktetService) {}
+  constructor(private basketService:BasktetService, private accountService: AccountService) {}
   
   ngOnInit(): void{
+    this.loadBasket();
+    this.loadCurrentUser();
+  }
+
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
+    this.accountService.LoadCurrentUser(token).subscribe(()=>{
+    }, err =>{
+      console.log(err);
+    })
+  }
+
+  loadBasket(){
     const basketId = localStorage.getItem('basket_id');
     if(basketId) {
       this.basketService.getBasket(basketId).subscribe(()=>{
-        console.log('Initialised basket');
       }, err =>{
         console.log(err);
       })

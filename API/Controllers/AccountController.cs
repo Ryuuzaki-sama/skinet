@@ -43,7 +43,7 @@ namespace API.Controllers
             var user = await userManager.FindByEmailFromClaimsPrinciple(User);
 
             return new UserDto {
-                UserName = user.UserName,
+                UserName = user.DisplayName,
                 Token = tokenService.CreateToken(user),
                 Email =  user.Email,
 
